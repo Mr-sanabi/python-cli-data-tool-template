@@ -1,0 +1,23 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pytest -q
+      - run: python -m pip install -r project_template/requirements.txt -r project_template/requirements-dev.txt
+      - run: python -m pytest -q
+        working-directory: project_template
+      - run: python -m compileall templates.py project_template/src
