@@ -1,4 +1,19 @@
-[tool.pytest.ini_options]
-pythonpath = ["."]
-testpaths = ["tests"]
-addopts = "-ra"
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_project"
+version = "0.1.0"
+description = "Короткое описание проекта"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Oleksandr Grachov", email = "oleksand.grachov.dev@gmail.com"
+]
+dependencies = [
+    "requests",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
